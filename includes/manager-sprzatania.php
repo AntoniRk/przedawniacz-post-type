@@ -1,11 +1,11 @@
 <?php
 class Sprzatacz {
-    private $file_checker;
-    private $quarantine_handler;
+    private $sprawdzanie_plikow;
+    private $manager_kwarantanny;
     
     public function __construct() {
-        $this->file_checker = new File_Checker();
-        $this->quarantine_handler = new Manager_Kwarantanny();
+        $this->sprawdzanie_plikow = new Sprawdzanie_plikow();
+        $this->manager_kwarantanny = new Manager_Kwarantanny();
         $this->init_hooks();
     }
     
@@ -55,13 +55,13 @@ class Sprzatacz {
         
         // Sprawdź i usuń załączniki
         foreach ($attachments as $attachment) {
-            $file_result = $this->file_checker->safe_delete_attachment($attachment->ID);
+            $file_result = $this->sprawdzanie_plikow->safe_delete_attachment($attachment->ID);
             $file_logs[] = $file_result;
         }
         
         // Przenieś do kwarantanny lub usuń
         if ($rule['action'] === 'quarantine') {
-            $result = $this->quarantine_handler->do_kwarantanny($post, $rule['quarantine_days']);
+            $result = $this->manager_kwarantanny->do_kwarantanny($post, $rule['quarantine_days']);
             $message = "Post {$post->ID} przeniesiony do kwarantanny";
         } else {
             wp_delete_post($post->ID, true);

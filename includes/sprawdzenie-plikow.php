@@ -1,5 +1,5 @@
 <?php
-class File_Checker {
+class Sprawdzanie_plikow {
     
     public function safe_delete_attachment($attachment_id) {
         $file_path = get_attached_file($attachment_id);
