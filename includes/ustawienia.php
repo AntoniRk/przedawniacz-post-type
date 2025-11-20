@@ -33,7 +33,7 @@ class Strona_Ustawienia {
         
         wp_enqueue_script(
             'auto-cleanup-admin',
-            AUTO_CLEANUP_PLUGIN_URL . 'assets/admin.js',
+            AUTO_CLEANUP_PLUGIN_URL . 'js/admin.js',
             ['jquery'],
             '1.0',
             true
