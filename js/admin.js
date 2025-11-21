@@ -51,8 +51,8 @@ jQuery(document).ready(function($) {
     
     // Walidacja przed zapisem
     $('form').on('submit', function(e) {
-        let isValid = true;
-        const usedPostTypes = [];
+        let czyPoprawne = true;
+        const uzywanePostTypes = [];
         
         $('.rule-row').each(function() {
             const postType = $(this).find('select').val();
@@ -60,7 +60,7 @@ jQuery(document).ready(function($) {
             
             // Sprawdź czy wszystkie pola są wypełnione
             if (!postType || !days || days < 1) {
-                isValid = false;
+                czyPoprawne = false;
                 $(this).css('border-color', '#dc3232');
                 return;
             } else {
@@ -68,16 +68,16 @@ jQuery(document).ready(function($) {
             }
             
             // Sprawdź duplikaty
-            if (usedPostTypes.includes(postType)) {
+            if (uzywanePostTypes.includes(postType)) {
                 alert('Nie możesz dodać dwóch reguł dla tego samego typu wpisu: ' + postType);
-                isValid = false;
+                czyPoprawne = false;
                 return false;
             }
             
-            usedPostTypes.push(postType);
+            uzywanePostTypes.push(postType);
         });
         
-        if (!isValid) {
+        if (!czyPoprawne) {
             e.preventDefault();
             alert('Uzupełnij wszystkie wymagane pola i upewnij się, że nie ma duplikatów.');
         }

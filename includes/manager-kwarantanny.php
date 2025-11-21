@@ -18,7 +18,7 @@ class Manager_Kwarantanny {
         ]);
         
         // Przenieś załączniki
-        $this->transfer_attachments($post->ID, $quarantine_id);
+        $this->przenies_zalaczniki($post->ID, $quarantine_id);
         
         // Oryginalny post do kosza
         wp_trash_post($post->ID);
@@ -26,7 +26,7 @@ class Manager_Kwarantanny {
         return $quarantine_id;
     }
     
-    private function transfer_attachments($from_post, $to_post) {
+    private function przenies_zalaczniki($from_post, $to_post) {
         $attachments = get_attached_media('', $from_post);
         
         foreach ($attachments as $attachment) {
@@ -52,11 +52,11 @@ class Manager_Kwarantanny {
         ]);
         
         foreach ($expired_quarantines as $quarantine) {
-            $this->permanently_delete($quarantine->ID);
+            $this->usun_perma($quarantine->ID);
         }
     }
     
-    private function permanently_delete($quarantine_id) {
+    private function usun_perma($quarantine_id) {
         $attachments = get_attached_media('', $quarantine_id);
         
         foreach ($attachments as $attachment) {

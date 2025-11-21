@@ -1,10 +1,10 @@
 <?php
 class Sprawdzanie_plikow {
     
-    public function safe_delete_attachment($attachment_id) {
+    public function bezpiecznie_usun_media($attachment_id) {
         $file_path = get_attached_file($attachment_id);
         
-        if (!$this->is_file_used_elsewhere($attachment_id, $file_path)) {
+        if (!$this->czy_zawarty_gdzieindziej($attachment_id, $file_path)) {
             wp_delete_attachment($attachment_id, true);
             return [
                 'status' => 'deleted',
@@ -20,7 +20,7 @@ class Sprawdzanie_plikow {
         }
     }
     
-    public function is_file_used_elsewhere($attachment_id, $file_path) {
+    public function czy_zawarty_gdzieindziej($attachment_id, $file_path) {
         global $wpdb;
         
         $filename = basename($file_path);

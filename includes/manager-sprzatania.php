@@ -55,7 +55,7 @@ class Sprzatacz {
         
         // Sprawdź i usuń załączniki
         foreach ($attachments as $attachment) {
-            $file_result = $this->sprawdzanie_plikow->safe_delete_attachment($attachment->ID);
+            $file_result = $this->sprawdzanie_plikow->bezpiecznie_usun_media($attachment->ID);
             $file_logs[] = $file_result;
         }
         
