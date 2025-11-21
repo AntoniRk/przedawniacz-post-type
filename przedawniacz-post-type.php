@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Przedawniacz post-type
  * Description: Automatyczne usuwanie/kwarantanna wpisów po określonym czasie
@@ -10,7 +11,8 @@ if (!defined('ABSPATH')) exit;
 define('AUTO_CLEANUP_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('AUTO_CLEANUP_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-function zarejestruj_kwarantanne_przedawniacz_post_type() {
+function zarejestruj_kwarantanne_przedawniacz_post_type()
+{
     register_post_type('quarantine', [
         'label' => 'Kwarantanna',
         'public' => false,
